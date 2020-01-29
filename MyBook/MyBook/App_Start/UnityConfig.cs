@@ -1,3 +1,4 @@
+using Logic.DataLogic;
 using System.Web.Mvc;
 using Unity;
 using Unity.Mvc5;
@@ -9,7 +10,7 @@ namespace MyBook
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();
-            
+            container.RegisterType<IAdminLogic, AdminLogic>();
             // register all your components with the container here
             // it is NOT necessary to register your controllers
             

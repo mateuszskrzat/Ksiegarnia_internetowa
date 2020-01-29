@@ -9,17 +9,16 @@ namespace MyBook.Controllers
 {
     public class HomeController : BaseController
     {
-        //private IAdminLogic _adminLogic;
+        private IAdminLogic _adminLogic;
 
-        //public HomeController(IAdminLogic adminLogic)
-        //{
-        //    this._adminLogic = adminLogic;
-        //}
+        public HomeController(IAdminLogic adminLogic)
+        {
+            this._adminLogic = adminLogic;
+        }
 
         public ActionResult Index()
         {
-            //var admin = this._adminLogic.GetAdmin(1);
-            var admin = new Logic.DataLogic.AdminLogic().GetAdmin(1);
+            var admin = this._adminLogic.GetAdmin(1);
             return View();
         }
 

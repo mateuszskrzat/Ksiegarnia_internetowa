@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBook.Tests", "MyBook.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{151CC7C1-530F-4BB1-8D15-361911C161D8}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyBookDbProject", "MyBookDbProject\MyBookDbProject.sqlproj", "{C20FE6D3-5741-45CB-84C7-339B41D2E7D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{151CC7C1-530F-4BB1-8D15-361911C161D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{151CC7C1-530F-4BB1-8D15-361911C161D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{151CC7C1-530F-4BB1-8D15-361911C161D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C20FE6D3-5741-45CB-84C7-339B41D2E7D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C20FE6D3-5741-45CB-84C7-339B41D2E7D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C20FE6D3-5741-45CB-84C7-339B41D2E7D7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C20FE6D3-5741-45CB-84C7-339B41D2E7D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C20FE6D3-5741-45CB-84C7-339B41D2E7D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C20FE6D3-5741-45CB-84C7-339B41D2E7D7}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

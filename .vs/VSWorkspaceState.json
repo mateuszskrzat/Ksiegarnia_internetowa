@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MyBook",
+    "\\MyBook\\Logic",
+    "\\MyBook\\Logic\\DAL"
+  ],
+  "SelectedNode": "\\MyBook\\Logic\\DAL\\RepositoryBase.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -10,15 +10,16 @@ namespace MyBook.Controllers
     public class HomeController : BaseController
     {
         private IAdminLogic _adminLogic;
+        private IProductLogic _productLogic;
 
-        public HomeController(IAdminLogic adminLogic)
+        public HomeController(IAdminLogic adminLogic, IProductLogic productLogic)
         {
             this._adminLogic = adminLogic;
+            this._productLogic = productLogic;
         }
 
         public ActionResult Index()
         {
-            var admin = this._adminLogic.GetAdmin(1);
             return View();
         }
 

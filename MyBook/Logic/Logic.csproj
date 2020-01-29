@@ -63,6 +63,8 @@
     <Compile Include="DataLogic\BaseLogic.cs" />
     <Compile Include="DAL\RepositoryBase.cs" />
     <Compile Include="DataLogic\IAdminLogic.cs" />
+    <Compile Include="DataLogic\IProductLogic.cs" />
+    <Compile Include="DataLogic\ProductLogic.cs" />
     <Compile Include="MyBookDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

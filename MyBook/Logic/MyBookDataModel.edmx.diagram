@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe003a78f2be443581a873770287e534" Name="Diagram1">
+        <EntityTypeShape EntityType="KsiegarniaModel.Administrator" Width="1.5" PointX="2.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiegarniaModel.ArchiwumZamowien" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiegarniaModel.PozycjaZamowienie" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiegarniaModel.Pracownik" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiegarniaModel.Produkt" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiegarniaModel.StatusZamowienie" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiegarniaModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiegarniaModel.Zamowienie" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="KsiegarniaModel.FK__ArchiwumZ__IdPra__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="KsiegarniaModel.FK__ArchiwumZ__IdSta__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="KsiegarniaModel.FK__ArchiwumZ__IdZam__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="KsiegarniaModel.FK__PozycjaZa__IdPro__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="KsiegarniaModel.FK__PozycjaZa__IdZam__48CFD27E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

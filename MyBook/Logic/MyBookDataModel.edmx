@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KsiegarniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Emial" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Haslo" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArchiwumZamowien">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdZamowienie" Type="bigint" Nullable="false" />
+          <Property Name="IdPracownik" Type="bigint" Nullable="false" />
+          <Property Name="IdStatusZamowienie" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PozycjaZamowienie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdZamowienie" Type="bigint" Nullable="false" />
+          <Property Name="IdProdukt" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Emial" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Haslo" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produkt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ilosc" Type="int" Nullable="false" />
+          <Property Name="Dostepny" Type="bit" Nullable="false" />
+          <Property Name="Cena" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DataDodania" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusZamowienie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Zamowienie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ulica" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumerDomu" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ArchiwumZ__IdPra__46E78A0C">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="ArchiwumZamowien" Type="Self.ArchiwumZamowien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArchiwumZamowien">
+              <PropertyRef Name="IdPracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArchiwumZ__IdSta__45F365D3">
+          <End Role="StatusZamowienie" Type="Self.StatusZamowienie" Multiplicity="1" />
+          <End Role="ArchiwumZamowien" Type="Self.ArchiwumZamowien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusZamowienie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArchiwumZamowien">
+              <PropertyRef Name="IdStatusZamowienie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ArchiwumZ__IdZam__47DBAE45">
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="1" />
+          <End Role="ArchiwumZamowien" Type="Self.ArchiwumZamowien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArchiwumZamowien">
+              <PropertyRef Name="IdZamowienie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PozycjaZa__IdPro__4AB81AF0">
+          <End Role="Produkt" Type="Self.Produkt" Multiplicity="1" />
+          <End Role="PozycjaZamowienie" Type="Self.PozycjaZamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PozycjaZamowienie">
+              <PropertyRef Name="IdProdukt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PozycjaZa__IdZam__48CFD27E">
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="1" />
+          <End Role="PozycjaZamowienie" Type="Self.PozycjaZamowienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PozycjaZamowienie">
+              <PropertyRef Name="IdZamowienie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KsiegarniaModelStoreContainer">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArchiwumZamowien" EntityType="Self.ArchiwumZamowien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PozycjaZamowienie" EntityType="Self.PozycjaZamowienie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produkt" EntityType="Self.Produkt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusZamowienie" EntityType="Self.StatusZamowienie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zamowienie" EntityType="Self.Zamowienie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ArchiwumZ__IdPra__46E78A0C" Association="Self.FK__ArchiwumZ__IdPra__46E78A0C">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="ArchiwumZamowien" EntitySet="ArchiwumZamowien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArchiwumZ__IdSta__45F365D3" Association="Self.FK__ArchiwumZ__IdSta__45F365D3">
+            <End Role="StatusZamowienie" EntitySet="StatusZamowienie" />
+            <End Role="ArchiwumZamowien" EntitySet="ArchiwumZamowien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArchiwumZ__IdZam__47DBAE45" Association="Self.FK__ArchiwumZ__IdZam__47DBAE45">
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+            <End Role="ArchiwumZamowien" EntitySet="ArchiwumZamowien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PozycjaZa__IdPro__4AB81AF0" Association="Self.FK__PozycjaZa__IdPro__4AB81AF0">
+            <End Role="Produkt" EntitySet="Produkt" />
+            <End Role="PozycjaZamowienie" EntitySet="PozycjaZamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PozycjaZa__IdZam__48CFD27E" Association="Self.FK__PozycjaZa__IdZam__48CFD27E">
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+            <End Role="PozycjaZamowienie" EntitySet="PozycjaZamowienie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KsiegarniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Emial" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Haslo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArchiwumZamowien">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK__ArchiwumZ__IdPra__46E78A0C" FromRole="ArchiwumZamowien" ToRole="Pracownik" />
+          <NavigationProperty Name="StatusZamowienie" Relationship="Self.FK__ArchiwumZ__IdSta__45F365D3" FromRole="ArchiwumZamowien" ToRole="StatusZamowienie" />
+          <NavigationProperty Name="Zamowienie" Relationship="Self.FK__ArchiwumZ__IdZam__47DBAE45" FromRole="ArchiwumZamowien" ToRole="Zamowienie" />
+        </EntityType>
+        <EntityType Name="PozycjaZamowienie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Produkt" Relationship="Self.FK__PozycjaZa__IdPro__4AB81AF0" FromRole="PozycjaZamowienie" ToRole="Produkt" />
+          <NavigationProperty Name="Zamowienie" Relationship="Self.FK__PozycjaZa__IdZam__48CFD27E" FromRole="PozycjaZamowienie" ToRole="Zamowienie" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Emial" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Haslo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ArchiwumZamowien" Relationship="Self.FK__ArchiwumZ__IdPra__46E78A0C" FromRole="Pracownik" ToRole="ArchiwumZamowien" />
+        </EntityType>
+        <EntityType Name="Produkt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ilosc" Type="Int32" Nullable="false" />
+          <Property Name="Dostepny" Type="Boolean" Nullable="false" />
+          <Property Name="Cena" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DataDodania" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PozycjaZamowienie" Relationship="Self.FK__PozycjaZa__IdPro__4AB81AF0" FromRole="Produkt" ToRole="PozycjaZamowienie" />
+        </EntityType>
+        <EntityType Name="StatusZamowienie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ArchiwumZamowien" Relationship="Self.FK__ArchiwumZ__IdSta__45F365D3" FromRole="StatusZamowienie" ToRole="ArchiwumZamowien" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Zamowienie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumerDomu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ArchiwumZamowien" Relationship="Self.FK__ArchiwumZ__IdZam__47DBAE45" FromRole="Zamowienie" ToRole="ArchiwumZamowien" />
+          <NavigationProperty Name="PozycjaZamowienie" Relationship="Self.FK__PozycjaZa__IdZam__48CFD27E" FromRole="Zamowienie" ToRole="PozycjaZamowienie" />
+        </EntityType>
+        <Association Name="FK__ArchiwumZ__IdPra__46E78A0C">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="ArchiwumZamowien" Type="Self.ArchiwumZamowien" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__ArchiwumZ__IdSta__45F365D3">
+          <End Role="StatusZamowienie" Type="Self.StatusZamowienie" Multiplicity="1" />
+          <End Role="ArchiwumZamowien" Type="Self.ArchiwumZamowien" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__ArchiwumZ__IdZam__47DBAE45">
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="1" />
+          <End Role="ArchiwumZamowien" Type="Self.ArchiwumZamowien" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__PozycjaZa__IdPro__4AB81AF0">
+          <End Role="Produkt" Type="Self.Produkt" Multiplicity="1" />
+          <End Role="PozycjaZamowienie" Type="Self.PozycjaZamowienie" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__PozycjaZa__IdZam__48CFD27E">
+          <End Role="Zamowienie" Type="Self.Zamowienie" Multiplicity="1" />
+          <End Role="PozycjaZamowienie" Type="Self.PozycjaZamowienie" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="KsiegarniaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+          <EntitySet Name="ArchiwumZamowien" EntityType="Self.ArchiwumZamowien" />
+          <EntitySet Name="PozycjaZamowienie" EntityType="Self.PozycjaZamowienie" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" />
+          <EntitySet Name="Produkt" EntityType="Self.Produkt" />
+          <EntitySet Name="StatusZamowienie" EntityType="Self.StatusZamowienie" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Zamowienie" EntityType="Self.Zamowienie" />
+          <AssociationSet Name="FK__ArchiwumZ__IdPra__46E78A0C" Association="Self.FK__ArchiwumZ__IdPra__46E78A0C">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="ArchiwumZamowien" EntitySet="ArchiwumZamowien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArchiwumZ__IdSta__45F365D3" Association="Self.FK__ArchiwumZ__IdSta__45F365D3">
+            <End Role="StatusZamowienie" EntitySet="StatusZamowienie" />
+            <End Role="ArchiwumZamowien" EntitySet="ArchiwumZamowien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ArchiwumZ__IdZam__47DBAE45" Association="Self.FK__ArchiwumZ__IdZam__47DBAE45">
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+            <End Role="ArchiwumZamowien" EntitySet="ArchiwumZamowien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PozycjaZa__IdPro__4AB81AF0" Association="Self.FK__PozycjaZa__IdPro__4AB81AF0">
+            <End Role="Produkt" EntitySet="Produkt" />
+            <End Role="PozycjaZamowienie" EntitySet="PozycjaZamowienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PozycjaZa__IdZam__48CFD27E" Association="Self.FK__PozycjaZa__IdZam__48CFD27E">
+            <End Role="Zamowienie" EntitySet="Zamowienie" />
+            <End Role="PozycjaZamowienie" EntitySet="PozycjaZamowienie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KsiegarniaModelStoreContainer" CdmEntityContainer="KsiegarniaEntities">
+          <EntitySetMapping Name="Administrator">
+            <EntityTypeMapping TypeName="KsiegarniaModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Emial" ColumnName="Emial" />
+                <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArchiwumZamowien">
+            <EntityTypeMapping TypeName="KsiegarniaModel.ArchiwumZamowien">
+              <MappingFragment StoreEntitySet="ArchiwumZamowien">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PozycjaZamowienie">
+            <EntityTypeMapping TypeName="KsiegarniaModel.PozycjaZamowienie">
+              <MappingFragment StoreEntitySet="PozycjaZamowienie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pracownik">
+            <EntityTypeMapping TypeName="KsiegarniaModel.Pracownik">
+              <MappingFragment StoreEntitySet="Pracownik">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Emial" ColumnName="Emial" />
+                <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produkt">
+            <EntityTypeMapping TypeName="KsiegarniaModel.Produkt">
+              <MappingFragment StoreEntitySet="Produkt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+                <ScalarProperty Name="Dostepny" ColumnName="Dostepny" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="DataDodania" ColumnName="DataDodania" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusZamowienie">
+            <EntityTypeMapping TypeName="KsiegarniaModel.StatusZamowienie">
+              <MappingFragment StoreEntitySet="StatusZamowienie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KsiegarniaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zamowienie">
+            <EntityTypeMapping TypeName="KsiegarniaModel.Zamowienie">
+              <MappingFragment StoreEntitySet="Zamowienie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="NumerDomu" ColumnName="NumerDomu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK__ArchiwumZ__IdPra__46E78A0C" TypeName="KsiegarniaModel.FK__ArchiwumZ__IdPra__46E78A0C" StoreEntitySet="ArchiwumZamowien">
+            <EndProperty Name="Pracownik">
+              <ScalarProperty Name="Id" ColumnName="IdPracownik" />
+            </EndProperty>
+            <EndProperty Name="ArchiwumZamowien">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__ArchiwumZ__IdSta__45F365D3" TypeName="KsiegarniaModel.FK__ArchiwumZ__IdSta__45F365D3" StoreEntitySet="ArchiwumZamowien">
+            <EndProperty Name="StatusZamowienie">
+              <ScalarProperty Name="Id" ColumnName="IdStatusZamowienie" />
+            </EndProperty>
+            <EndProperty Name="ArchiwumZamowien">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__ArchiwumZ__IdZam__47DBAE45" TypeName="KsiegarniaModel.FK__ArchiwumZ__IdZam__47DBAE45" StoreEntitySet="ArchiwumZamowien">
+            <EndProperty Name="Zamowienie">
+              <ScalarProperty Name="Id" ColumnName="IdZamowienie" />
+            </EndProperty>
+            <EndProperty Name="ArchiwumZamowien">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__PozycjaZa__IdPro__4AB81AF0" TypeName="KsiegarniaModel.FK__PozycjaZa__IdPro__4AB81AF0" StoreEntitySet="PozycjaZamowienie">
+            <EndProperty Name="Produkt">
+              <ScalarProperty Name="Id" ColumnName="IdProdukt" />
+            </EndProperty>
+            <EndProperty Name="PozycjaZamowienie">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__PozycjaZa__IdZam__48CFD27E" TypeName="KsiegarniaModel.FK__PozycjaZa__IdZam__48CFD27E" StoreEntitySet="PozycjaZamowienie">
+            <EndProperty Name="Zamowienie">
+              <ScalarProperty Name="Id" ColumnName="IdZamowienie" />
+            </EndProperty>
+            <EndProperty Name="PozycjaZamowienie">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

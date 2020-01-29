@@ -21,9 +21,22 @@ namespace Logic.DAL
 
         }
 
-        public void Get<T>(Expression<Func<T, bool>> expression)
+        public OperationStatus<T> Get<T>(Expression<Func<T, bool>> expression) where T : class
         {
-            
+            var result = new OperationStatus<T>();
+            try
+            {
+                using (var context = new KsiegarniaEntities())
+                {
+                    result.Data = context.Set<T>().FirstOrDefault(expression.Compile());
+                    result.Status = result.Data != null;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = e;
+            }
+            return result;
         }
     }
 }

@@ -59,8 +59,10 @@
     <Compile Include="ArchiwumZamowien.cs">
       <DependentUpon>MyBookDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseLogic.cs" />
+    <Compile Include="DataLogic\AdminLogic.cs" />
+    <Compile Include="DataLogic\BaseLogic.cs" />
     <Compile Include="DAL\RepositoryBase.cs" />
+    <Compile Include="DataLogic\IAdminLogic.cs" />
     <Compile Include="MyBookDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

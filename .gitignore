@@ -4,6 +4,7 @@
 *.com
 *.class
 *.dll
+.jfm
 *.exe
 *.pdb
 *.dll.config
@@ -27,6 +28,7 @@ _UpgradeReport_Files/
 bin/
 obj/
 TestResults/
+.vs/
 ###################
 # Web publish log #
 ###################
@@ -78,3 +80,4 @@ _[Ss]cripts
 /MyBook/.vs/MyBook/config
 /MyBook/.vs/MyBook/v16/Server/sqlite3
 /MyBook/MyBookDbProject/MyBookDbProject.dbmdl
+/MyBook/MyBookDbProject/MyBookDbProject.jfm

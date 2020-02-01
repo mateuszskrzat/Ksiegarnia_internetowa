@@ -10,14 +10,15 @@ namespace Logic.DataLogic
     {
         public OperationStatus<Zamowienie> CreateOrder(string name, string surname, string email, string city, string street, int houseNumber)
         {
-            return Repository.Create(new Zamowienie({
+            return Repository.Create<Zamowienie>(new Zamowienie()
+            {
                 Imie = name,
                 Nazwisko = surname,
                 Email = email,
                 Miasto = city,
                 Ulica = street,
                 NumerDomu = houseNumber
-            }));
+            });
         }
 
         public OperationStatus<bool> Delete(Zamowienie order)
@@ -27,7 +28,7 @@ namespace Logic.DataLogic
 
         public OperationStatus<List<Zamowienie>> GetAllOrders()
         {
-            return Repository.GetMany<Zamowienie>(x => x);
+            return Repository.GetMany<Zamowienie>();
         }
 
         public OperationStatus<Zamowienie> GetOrder(int id)

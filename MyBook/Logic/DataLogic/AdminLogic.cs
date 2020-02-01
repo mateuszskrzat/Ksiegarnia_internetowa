@@ -15,7 +15,7 @@ namespace Logic.DataLogic
 
         public OperationStatus<List<Administrator>> GetAllAdmins()
         {
-            return Repository.GetMany<Administrator>(x => x);
+            return Repository.GetMany<Administrator>();
         }
 
         public OperationStatus<Administrator> CreateAdmin(string name, string surname, string email, string password)

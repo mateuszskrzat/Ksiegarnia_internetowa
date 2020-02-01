@@ -12,6 +12,8 @@ namespace MyBook
 			var container = new UnityContainer();
             container.RegisterType<IAdminLogic, AdminLogic>();
             container.RegisterType<IProductLogic, ProductLogic>();
+            container.RegisterType<IEmployeeLogic, EmployeeLogic>();
+            container.RegisterType<IOrderLogic, IOrderLogic>();
             // register all your components with the container here
             // it is NOT necessary to register your controllers
             

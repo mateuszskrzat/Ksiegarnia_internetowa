@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Logic.DataLogic
 {
-    interface IEmployeeLogic
+    public interface IEmployeeLogic
     {
         OperationStatus<Pracownik> GetEmployee(int id);
-        OperationStatus<Pracownik> GetAllEmployees();
+        OperationStatus<List<Pracownik>> GetAllEmployees();
         OperationStatus<Pracownik> CreateEmployee(string name, string surname, string email, string password);
         OperationStatus<bool> DeleteEmployee(Pracownik employee);
     }

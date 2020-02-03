@@ -1,4 +1,5 @@
-﻿using Logic.DataLogic;
+﻿using Logic;
+using Logic.DataLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace MyBook.Controllers
         {
             this._adminLogic = adminLogic;
             this._productLogic = productLogic;
+            //_adminLogic.CreateAdmin("Jan", "Kowalski", "jk@gmail.com", "123");
+            List<Administrator> administrators = _adminLogic.GetAllAdmins().Data;
+            Administrator admin = administrators[0];
         }
 
         public ActionResult Index()
